@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    {% load static %}
+    
+</head>
+<body>
+    <link rel="stylesheet" href="{% static 'login.css' %}">  
+    <div class="login-container">
+        <h2>Login</h2>
+        <img src="../static/" alt="">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <input type="submit" value="Login">
+        </form>
+        <a href="register" class="register-button">Register</a>
+    </div>
+</body>
+</html>
