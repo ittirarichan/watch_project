@@ -3,9 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Watch Shop Admin Panel</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: #fff;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+        }
+
+        .sidebar ul li {
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #444;
+        }
+
+        /* Main content */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .section {
+            margin-top: 20px;
+        }
+
+        .section h3 {
+            margin-bottom: 10px;
+        }
+
+        .section table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .section table, .section th, .section td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .section th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .add-button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .add-button:hover {
+            background-color: #218838;
+        }
+
+        a{
+            color: white;
+        text-decoration: none;        }
+    </style>
 </head>
 <body>
-    <h2>Home Page Shop</h2>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li onclick="showSection('products')">Manage Products</li>
+            <li onclick="showSection('orders')">Manage Orders</li>
+            <li onclick="showSection('users')">Manage Users</li>
+            <li onclick="showSection('reports')">Reports</li>
+            <li onclick="showSection('settings')">Settings</li>
+            <li><a href="watch_logout">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Watch Shop Admin Dashboard</h1>
+        </div>
+
+        <!-- Manage Products Section -->
+        <div class="section" id="products">
+            <h3>Manage Products</h3>
+            <button class="add-button">Add New Product</button>
+            <table>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+                <!-- Sample Data -->
+                <tr>
+                    <td>1</td>
+                    <td>Classic Watch</td>
+                    <td>$250</td>
+                    <td>20</td>
+                    <td><button>Edit</button> <button>Delete</button></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Manage Orders Section -->
+        <div class="section" id="orders" style="display: none;">
+            <h3>Manage Orders</h3>
+            <table>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                <!-- Sample Data -->
+                <tr>
+                    <td>1001</td>
+                    <td>John Doe</td>
+                    <td>$500</td>
+                    <td>Shipped</td>
+                    <td><button>View</button> <button>Update</button></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Manage Users Section -->
+        <div class="section" id="users" style="display: none;">
+            <h3>Manage Users</h3>
+            <table>
+                <tr>
+                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+                <!-- Sample Data -->
+                <tr>
+                    <td>501</td>
+                    <td>Jane Smith</td>
+                    <td>jane@example.com</td>
+                    <td><button>Edit</button> <button>Delete</button></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Reports Section -->
+        <div class="section" id="reports" style="display: none;">
+            <h3>Reports</h3>
+            <p>Reports coming soon...</p>
+        </div>
+
+        <!-- Settings Section -->
+        <div class="section" id="settings" style="display: none;">
+            <h3>Settings</h3>
+            <p>Settings options coming soon...</p>
+        </div>
+
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.style.display = 'none');
+
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    </script>
+
 </body>
 </html>

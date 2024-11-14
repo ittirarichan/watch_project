@@ -4,5 +4,5 @@ from . import views
 urlpatterns=[
     path('',views.watch_login),
     path('watch_home',views.watch_home),
-    path('register',views.register)
+    path('watch_logout',views.watch_shop_logout),
 ]
