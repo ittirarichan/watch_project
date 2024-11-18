@@ -57,3 +57,29 @@ def add_product(req):
             return render(req,'watch/add_product.html')
     else:
         return redirect(watch_login)
+    
+
+
+def edit_product(req,pid):
+    if req.method=='POST':
+        product_id=req.POST['product_id']
+        name=req.POST['name']
+        description=req.POST['description']
+        price=req.POST['price']
+        offer_price=req.POST['offer_price']
+        stock=req.POST['stock']
+        file=req.FILES.get('img')
+        if file :
+            Product.objects.filter(pk=product_id).update(pid=product_id,name=name,dis=description,
+                                            price=price,offer_price=offer_price,stock=stock,img=file)
+            data=Product.objects.get(pk=pid)
+            data.img=file
+            data.save()
+
+        else:
+            Product.objects.filter(pk=pid).update(pid=product_id,name=name,dis=description,
+                                            price=price,offer_price=offer_price,stock=stock)
+            return redirect(watch_home)
+    else:
+        data=Product.objects.get(pk=pid)
+        return render(req,'watch/edit_product.html',{'data':data})

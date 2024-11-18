@@ -7,4 +7,5 @@ urlpatterns=[
     path('watch_home',views.watch_home),
     path('watch_logout',views.watch_shop_logout),
     path('add_product',views.add_product),
+    path('edit_product/<pid>',views.edit_product),
 ]
