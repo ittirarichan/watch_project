@@ -7,7 +7,7 @@ body {
   }
   
   .container {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 0 1rem;
   }
@@ -82,21 +82,39 @@ body {
   
   
   /* Footer */
-  
-  /* footer {
-    background: #333;
-    color: #fff;
+
+/*   
+   .footer {
+    background-color: #333;
+    color: white;
     text-align: center;
-    padding: 1rem 0;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
   }
   
-  footer .social-links a {
-    margin: 0 0.5rem;
-    color: #fff;
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .social-links {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .social-links li {
+    display: inline;
+    margin: 0 10px;
+  }
+  
+  .social-links a {
+    color: white;
     text-decoration: none;
   }
   
-  footer .social-links a:hover {
+  .social-links a:hover {
     text-decoration: underline;
   }
    */

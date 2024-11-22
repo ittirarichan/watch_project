@@ -140,12 +140,41 @@ def view_product(req,pid):
 def add_to_cart(req,pid):
     product=Product.objects.get(pk=pid)
     user=User.objects.get(username=req.session['user'])
-    data=Cart.objects.create(product=product,user=user,qty=1)
-    data.save()
+    try:
+        cart=Cart.objects.get(user=user,product=product)
+        cart.qty+=1
+        cart.save()
+    except:
+        data=Cart.objects.create(product=product,user=user,qty=1)
+        data.save()
     return redirect(view_cart)
 
 def view_cart(req):
-    return render(req,'user/cart.html')  
+    user=User.objects.get(username=req.session['user'])
+    data=Cart.objects.filter(user=user)
+    return render(req,'user/cart.html',{'cart':data})  
+
+def qty_inc(req,cid):
+    data=Cart.objects.get(pk=cid)
+    data.qty+=1
+    data.save()  
+    return redirect(view_cart)
+
+def qty_dec(req,cid):
+    data=Cart.objects.get(pk=cid)
+    data.qty-=1
+    data.save()  
+    if data.qty==0:
+        data.delete()
+    return redirect(view_cart)
+
+def remove_cart(req,cid):
+    data=Cart.objects.get(pk=cid)
+    # file=data.img.url
+    # file=file.split('/')[-1]
+    # os.remove('media/' + file)
+    data.delete()
+    return redirect(view_cart)
 
 
   
@@ -155,3 +184,6 @@ def booking(req):
     return render(req,'user/booking.html')   
 def about(req):
     return render(req,'user/about.html')   
+
+
+

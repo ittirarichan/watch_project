@@ -25,7 +25,7 @@
       <div class="search-cart">
         <input type="text" class="search-bar" placeholder="Search...">
         <button class="search-btn">🔍</button>
-        <a href="cart" class="cart-icon">🛒</a>
+        <a href="view_cart" class="cart-icon">🛒</a>
         <a href="watch_logout" class="cart-icon">Logout</a>
       </div>
     </div>
@@ -50,6 +50,8 @@
                   <img class="card-img-top" src="{{pro.img.url}}" alt="Card image" style="width:100%">
                   <div class="card-body">
                     <h4 class="card-title">{{pro.name}}</h4>
+                    <h4 class="card-title">{{pro.offer_price}}</h4>
+                    <h4 class="card-title">{{pro.price}}</h4>
                     <p class="card-text">{{pro.dis}}</p>
                   </div>
                 </div>
@@ -61,15 +63,21 @@
 
 
   <!-- Footer -->
-  <footer class="text-center py-3 footer-dark fixed-bottom">
-    <div>
-      <p>&copy; 2024 Not Named. All rights reserved.</p>
-      <div class="social-links">
-        <a href="#">Facebook</a>
-        <a href="#">Instagram</a>
-        <a href="#">Twitter</a>
+    <footer class="bg-dark text-white py-4 fixed-bottom">
+      <div class="container">
+        <div class="row">
+          <!-- Footer Left Section (Copyright) -->
+          <div class="col-12 col-md-6 text-center text-md-start">
+            <p class="mb-0">&copy; 2024 Your Company. All rights reserved.</p>
+          </div>
+          <!-- Footer Right Section (Social Media Links) -->
+          <div class="col-12 col-md-6 text-center text-md-end">
+            <a href="#" class="text-white me-3">Facebook</a>
+            <a href="#" class="text-white me-3">Twitter</a>
+            <a href="#" class="text-white me-3">Instagram</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
 </body>
 </html>
