@@ -2,9 +2,11 @@ from django.urls import path
 from . import views
 
 urlpatterns=[
-    # ---------------admin---------------
     path('',views.watch_login),
     path('register',views.register),
+
+    # ---------------admin---------------
+
     path('watch_home',views.watch_home),
     path('watch_logout',views.watch_shop_logout),
     path('add_product',views.add_product),
@@ -19,10 +21,13 @@ urlpatterns=[
     path("qty_inc/<cid>",views.qty_inc),
     path("qty_dec/<cid>",views.qty_dec),
     path("remove_cart/<cid>",views.remove_cart),
+    path('cart_pro_buy/<cid>',views.cart_pro_buy),
+    path('bookings',views.bookings),
+    path('pro_buy/<pid>',views.pro_buy),
+    path('user_home',views.user_home),
 
     
-    path('user_home',views.user_home),
     path('contact',views.contact),
-    path('booking',views.booking),
+    # path('booking',views.booking),
     path('about',views.about),
 ]

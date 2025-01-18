@@ -5,6 +5,9 @@ from .models import *
 import os
 from django.contrib.auth.models import User
 
+from django.core.mail import send_mail
+from django.conf import settings
+
 
 # Create your views here.
 
@@ -17,7 +20,7 @@ def watch_login(req):
     if 'user' in req.session:
         return redirect(user_home)
     if req.method=='POST':
-        print('jgfdt')
+        # print('jgfdt')
         username=req.POST['username']
         password=req.POST['password']
         data=authenticate(username=username,password=password)
@@ -116,8 +119,11 @@ def register(req):
         name=req.POST['name']
         email=req.POST['email']
         pswd=req.POST['password']
+        send_mail("Account created","succesfully completed", settings.EMAIL_HOST_USER, [email])
+
         try:
             data=User.objects.create_user(first_name=name,email=email,username=email,password=pswd)    
+
             data.save()
         except:
             messages.warning(req, "Username/email already exist.")
@@ -170,11 +176,33 @@ def qty_dec(req,cid):
 
 def remove_cart(req,cid):
     data=Cart.objects.get(pk=cid)
-    # file=data.img.url
-    # file=file.split('/')[-1]
-    # os.remove('media/' + file)
+
     data.delete()
     return redirect(view_cart)
+
+def cart_pro_buy(req,cid):
+    cart=Cart.objects.get(pk=cid)
+    product=cart.product
+    user=cart.user
+    qty=cart.qty
+    price=product.offer_price*qty
+    buy=Buy.objects.create(product=product,user=user,qty=qty,price=price)
+    buy.save()
+    return redirect(bookings)
+
+def pro_buy(req,pid):
+    product=Product.objects.get(pk=pid)
+    user=User.objects.get(username=req.session['user'])
+    qty=1
+    price=product.offer_price
+    buy=Buy.objects.create(product=product,user=user,qty=qty,price=price)
+    buy.save()
+    return redirect(bookings)
+
+def bookings(req):
+    user=User.objects.get(username=req.session['user'])
+    buy=Buy.objects.filter(user=user)[::-1]
+    return render(req,'user/bookings.html',{'bookings':buy})
 
 
   
